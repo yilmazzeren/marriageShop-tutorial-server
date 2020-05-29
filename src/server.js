@@ -25,7 +25,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/urunler", urunler);
+app.use("/", urunler);
 app.use("/kategori", kategori);
 app.use("/urunEkleme", addItem);
 

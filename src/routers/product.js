@@ -1,15 +1,19 @@
 const express = require("express");
-
+const mongoose = require("mongoose");
 const router = express.Router();
 
-router.post("/",(req,res) => {
-    res.json({
-        id:"1",
-        categoryId:"a",
-        productName:"a",
-        productPrice:"a",
-        productImage:""
-    })
-})
+const Schema = mongoose.Schema;
+const ProductSchema = new Schema();
 
-module.exports=router;
+const Product = mongoose.model("newItem", ProductSchema);
+router.get("/", (req, res) => {
+    Product.find({}, function (err, newItem) {
+    if(err) {
+        res.send("Bazı hatalar alındı");
+        next();
+    }
+    res.send(newItem);
+  });
+});
+
+module.exports = router;
